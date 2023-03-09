@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"> <!--//подключаем шаблонизтор timeleaf-->
+<head>
+    <meta charset="UTF-8">
+    <title>Все люди</title>
+</head>
+<body>
+
+<div th:each="person : ${people}"> <!--//типа массива for each тут people это список который мы передали в модель в контроллере а создали в DAO-->
+    <a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getName()}">user</a> <!--// а тут person это каждый обьект(элемент) из списка people-->
+                                                                                                <!-- @{/people/{id}(id=${person.getId()})} - это шаблон адреса страницы-->
+</div>
+
+</body>
+</html>
