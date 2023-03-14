@@ -27,14 +27,29 @@ public class PeopleController {
         return "people/show";
     }
     @GetMapping("/new")
-    public String newPerson(Model model) { //Метод возвращает форму создания нового пользователя
-        model.addAttribute("person", new Person());
+    public String newPerson(Model model) { //Метод возвращает форму создания нового пользователя тут так же можно использовать @ModelAttribute
+        model.addAttribute("person", new Person()); // в конструкторе так же можно использовать @ModelAttribute тогда эта строчка не нужна
         return "people/new";
     }
     @PostMapping()
     public String create(@ModelAttribute("person") Person person){  // Метод за счет аннотации @ModelAttribute создает в модели объект Person и из тела Post запроса(формы) задает объекту Person поля через сеттеры
         personDAO.save(person);                                     // а тут мы сохраняем обьект в базу или список или ?
         return "redirect:/people"; //осуществляем редирект по ключевому слову redirect:
+    }
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable("id") int id){
+        model.addAttribute("person" , personDAO.show(id));
+        return "people/edit";
+    }
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id){
+        personDAO.update(id, person);
+        return "redirect:/people";
+    }
 
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id){
+        personDAO.delete(id);
+        return "redirect:/people";
     }
 }

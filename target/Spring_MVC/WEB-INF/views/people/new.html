@@ -8,9 +8,10 @@
         <!-- Создаем форму таймлив-->
   <form th:method="POST" th:action="@{/people}" th:object="${person}"> <!-- тут th:action это на какой адрес отправляем POST запрос из формы а th:object это обьект из модели-->
       <label for="name">Enter Name</label>  <!--label для input'а  for="name" - указываем id inputa  -->
-      <input type="text" th:field="*{name}" id="name"/> <!--тут мы создаем input(edit) в html, th:field="*{name}" так передаем информ. к поле объекта th:object="${person}" -->
+      <input type="text" th:field="*{name}" id="name"/> <!--тут мы создаем input(edit) в html, th:field="*{name}" так передаем информ. к полю объекта th:object="${person}" -->
       <br> <!-- пустая строка-->
       <input type="submit" value="Create!"/>
+
 
   </form>
 

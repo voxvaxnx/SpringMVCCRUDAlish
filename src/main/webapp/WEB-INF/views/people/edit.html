@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/people/{id}(id=${person.getId})}" th:object="${person}"> <!-- тут th:action это на какой адрес отправляем POST запрос из формы а th:object это обьект из модели-->
+  <label for="name">Enter Name</label>  <!--label для input'а  for="name" - указываем id inputa  -->
+  <input type="text" th:field="*{name}" id="name"/> <!--тут мы создаем input(edit) в html, th:field="*{name}" так передаем информ. к полю объекта th:object="${person}" -->
+  <br> <!-- пустая строка-->
+  <input type="submit" value="Update!"/>
+
+
+</form>
+</body>
+</html>
